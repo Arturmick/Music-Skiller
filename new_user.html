@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+</head>
+<body>
+<h1>Introduzca sus datos para registrarse</h1>
+<form action="new_user.php" method="post">
+  <label for="nick">Nick:</label>
+  <input type="text" id="nick" name="nick" required><br><br>
+
+  <label for="email">Email:</label>
+  <input type="text" id="email" name="email" required><br><br>
+
+  <label for="instrumento">Instrumento:</label>
+  <select id="instrumento" name="instrumento">
+    <option value="trompeta">Trompeta</option>
+    <option value="trombón">Trombón</option>
+    <option value="saxofón">Saxofón</option>
+    <option value="clarinete">Clarinete</option>
+    <option value="flauta">Flauta</option>
+    <option value="guitarra">Guitarra</option>
+    <option value="bajo">Bajo</option>
+    <option value="batería">Batería</option>
+    <option value="piano">Piano</option>
+    <option value="voz">Voz</option>
+    <option value="violín">Violín</option>
+    <option value="violonchelo">Violonchelo</option>
+    <option value="contrabajo">Contrabajo</option>
+    <option value="arpa">Arpa</option>
+    <option value="oboe">Oboe</option>
+    <option value="fagot">Fagot</option>
+    <option value="tuba">Tuba</option>
+    <option value="bandoneón">Bandoneón</option>
+    <option value="acordeón">Acordeón</option>
+  </select>
+
+  <input type="submit" value="nuevo usuario">
+</form>
+</body>
+</html>
