@@ -47,10 +47,50 @@ body {
     transition: 0.5s;
 }
 #nombreCabecera {
+    width: 20%;
     margin-right: 500px;
     margin-top: 10px;
     font-size: 50px;
 }
 #formulario {
     color: white;
+}
+.menu2 {
+    font-size: large;
+    margin-top: 15px;
+    width: 6%;
+    margin-right: 30px;
+    height: 40px;
+    display: flex; 
+    align-items: center;
+    justify-content: right;
+    border: 1px solid rgb(255, 255, 255);  
+    border-radius: 5px; 
+    cursor: pointer;
+}
+.menu2:hover {
+    background-color: #ffa500;
+    color: white;
+    transition: 0.5s;
+}
+#login {
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+}
+/**************************** selector ejercicio **************************/
+
+.tituloSelector {
+    align-items: center;    
+    justify-content: center;
+    display: flex;
+    color: white;
+    font-size: 70px;
+    margin-top: 80px;
+    margin-left: 20px;
+}
+.tituloSelector img {
+    width: 300px;
+    height: auto;
+    margin-right: 20px;
 }
