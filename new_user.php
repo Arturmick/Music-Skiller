@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt) {
                 mysqli_stmt_bind_param($stmt, "isss", $id, $nick, $email, $instrumento);
                 if (mysqli_stmt_execute($stmt)) {
-                    echo "Nuevo usuario registrado con éxito.<br>1 fila insertada.<br>";
+	                echo json_encode(["status" => "success", "message" => "Nuevo usuario registrado con éxito."]);
                 } else {
                     echo "Error en el registro: " . mysqli_stmt_error($stmt) . "<br>";
                 }

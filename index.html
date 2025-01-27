@@ -51,9 +51,32 @@
             <option value="acordeón">Acordeón</option>
         </select>
 
-        <input type="submit" value="nuevo usuario">
+        <input type="submit" value="Nuevo Usuario">
         </form>
+        <div id="texto"></div>
     </div>
-    
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            fetch('new_user.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    var textoDiv = document.getElementById('texto');
+                    if (data.status === 'success') {
+                        textoDiv.textContent = data.message;
+                    } else {
+                        textoDiv.textContent = data.message;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
 </body>
 </html>
