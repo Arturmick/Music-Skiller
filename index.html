@@ -8,8 +8,10 @@
     <script src="scripts/scripts.js"></script>
 </head>
 <body>
-    <div class="cabecera">                
-        <img class="logo" src="imagenes/musica skilller3.png" alt="Logo">
+    <div class="cabecera">                        
+        <a href="index.html" class="menu3">            
+            <img class="logo" src="imagenes/musica skilller3.png" alt="Logo">
+        </a>
         <div id="nombreCabecera">Music Skiller</div>
         <div class="menu">
             <div>INICIO</div>
@@ -18,54 +20,32 @@
             <div>PORFOLIO</div> 
             <div id="textoGrande">SOLICITA PRESUPUESTO</div>           
         </div>
-        <div class="menu2">
+        <a href="login.html" class="menu2">
             <div>Log in</div>
-            <img id="login" src="imagenes/login.png" alt="Login">                      
+            <img id="login" src="imagenes/login.png" alt="Login"> 
+        </a>                                 
         </div>
     </div>
     <div class="tituloSelector">
         <img src="imagenes/trombon.png" alt="">
         <div id="instrumento">Trombón</div>
     </div>    
-    <div class="selector ejercicio">        
-        <div id="nivel">
+    <div class="selectorEjercicio"> 
+        <div class="selectores ejercicios">
+            <div id="escalas">Escalas</div>
+            <div id="arpegios">Arpegios</div>
+            <div id="picado">Picado</div>
+            <div id="ligado">Ligado</div>
+            <div id="trino">Trino</div>
+            <div id="agudos">Agudos</div>
+            <div id="grvaes">Graves</div>
+            <div id="flexibilidad">Flexibilidad</div>
+        </div>       
+        <div id='nivel' class="selectores">
             <div id="principiante">Principiante</div>
             <div id="medio">Medio</div>
-            <div id="avanzado">Avanzado</div>
-        </div>
-        <div id="ejercicios">
-            <div>Escalas</div>
-            <div>Arpegios</div>
-            <div>Picado</div>
-            <div>Ligado</div>
-            <div>Trino</div>
-            <div>Agudos</div>
-            <div>Graves</div>
-            <div>Respiración</div>
-        </div>
-    </div>    
-    <script>
-        document.getElementById('registroForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(this);
-
-            fetch('new_user.php', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    var textoDiv = document.getElementById('texto');
-                    if (data.status === 'success') {
-                        textoDiv.textContent = data.message;
-                    } else {
-                        textoDiv.textContent = data.message;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
-    </script>
+            <div id="avanzado" class="">Avanzado</div>
+        </div>        
+    </div>       
 </body>
 </html>

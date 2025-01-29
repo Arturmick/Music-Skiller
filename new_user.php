@@ -6,19 +6,23 @@ $password = "";
 $database = "music_skiller_bd";
 $id = 0;
 
+header('Content-Type: application/json');
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nick = $_POST['nick'];
     $email = $_POST['email'];
+    $pass = $_POST['pass'];
     $instrumento = $_POST['instrumento'];
 
-    if (empty($nick) || empty($email) || empty($instrumento)) {
-        echo "Error: Todos los campos son obligatorios.";
+    if (empty($nick) || empty($email) || empty($pass) || empty($instrumento)) {
+        echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios."]);
+	} else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		echo json_encode(["status" => "error", "message" => "El correo electrónico no es válido."]);
     } else {
         $link = mysqli_connect($hostname, $username, $password, $database);
 
         if (!$link) {
-            echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-            echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+            echo json_encode(["status" => "error", "message" => "No se pudo conectar a MySQL."]);
         } else {
 
             // Generar un ID único de nueve cifras aleatorias
@@ -33,25 +37,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 mysqli_stmt_close($stmt);
             } while ($id_exists);
 
-            $query = "INSERT INTO usuario ( id, nick, email, instrumento) VALUES (?, ?, ?, ?)";
+            $query = "INSERT INTO usuario (id, nick, email, contraseña, instrumento) VALUES (?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($link, $query);
 
             if ($stmt) {
-                mysqli_stmt_bind_param($stmt, "isss", $id, $nick, $email, $instrumento);
+                mysqli_stmt_bind_param($stmt, "issss", $id, $nick, $email, $pass, $instrumento);
                 if (mysqli_stmt_execute($stmt)) {
-	                echo json_encode(["status" => "success", "message" => "Nuevo usuario registrado con éxito."]);
+                    echo json_encode(["status" => "success", "message" => "Nuevo usuario registrado con éxito."]);
                 } else {
-                    echo "Error en el registro: " . mysqli_stmt_error($stmt) . "<br>";
+                    echo json_encode(["status" => "error", "message" => "Error en el registro: " . mysqli_stmt_error($stmt)]);
                 }
                 mysqli_stmt_close($stmt);
             } else {
-                echo "Error al preparar la consulta: " . mysqli_error($link) . "<br>";
+                echo json_encode(["status" => "error", "message" => "Error al preparar la consulta: " . mysqli_error($link)]);
             }
 
             mysqli_close($link);
         }
     }
 } else {
-    echo "Método de solicitud no válido.";
+    echo json_encode(["status" => "error", "message" => "Método de solicitud no válido."]);
 }
 ?>
