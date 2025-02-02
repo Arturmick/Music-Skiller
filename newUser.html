@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Skiller</title>
+    <script src="scripts/scripts.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="cabecera"> 
+        <a href="index.html" class="menuLogo">            
+            <img class="logo" src="imagenes/musica skilller3.png" alt="Logo">
+        </a>  
+        <div id="nombreCabecera">Music Skiller</div>
+        <div class="menu">
+            <div>INICIO</div>
+            <div>CONOCENOS</div>
+            <div>SERVICIOS</div>
+            <div>PORFOLIO</div>       
+        </div>                                
+        </div>
+    </div>
+    <div class="tituloSelector">
+        <img src="imagenes/trombon.png" alt="">
+        <div id="tituloInstrumento">Log In</div>
+    </div>    
+    <div id="tituloLogin">Introduzca sus datos para registrarse</div>
+
+    <div id="decoracionRegistro">
+        <div id="formulario">       
+        
+            <form action="new_user.php" method="post" id="registroForm">            
+                <div id="labels">
+                    <label for="nick">Usuario:</label>
+                    <input type="text" id="nick" name="nick" required placeholder="Escriba aquí">
+                    <label for="pass">Contraseña:</label>
+                    <input type="password" id="pass" name="pass" required placeholder="Escriba aquí">
+                    <label for="confirm_pass">Repita la contraseña:</label>
+                    <input type="password" id="confirm_pass" name="confirm_pass" required placeholder="Escriba aquí">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" required placeholder="Escriba aquí">
+    
+                </div>         
+                <div id="selectorInstrumento">
+                    <label for="instrumento">Instrumento:</label>
+                    <select id="instrumento" name="instrumento">
+                        <option value="trompeta">Trompeta</option>
+                        <option value="trombón">Trombón</option>
+                        <option value="saxofón">Saxofón</option>
+                        <option value="clarinete">Clarinete</option>
+                        <option value="flauta">Flauta</option>
+                        <option value="guitarra">Guitarra</option>
+                        <option value="bajo">Bajo</option>
+                        <option value="batería">Batería</option>
+                        <option value="piano">Piano</option>
+                        <option value="voz">Voz</option>
+                        <option value="violín">Violín</option>
+                        <option value="violonchelo">Violonchelo</option>
+                        <option value="contrabajo">Contrabajo</option>
+                        <option value="arpa">Arpa</option>
+                        <option value="oboe">Oboe</option>
+                        <option value="fagot">Fagot</option>
+                        <option value="tuba">Tuba</option>
+                        <option value="bandoneón">Bandoneón</option>
+                        <option value="acordeón">Acordeón</option>
+                    </select>
+                    <div class="salto-linea"></div>
+                    <input type="submit" value="Registrarse">
+                </div>
+                
+            </form>            
+        </div>
+        <div id="mensajeContraseña" class=""></div>
+    </div>
+    
+</body>
+</html>
