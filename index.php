@@ -30,7 +30,7 @@ session_start();
 
     <?php } else { ?>
 
-    <a href="login.html" class="menu2">
+    <a href="login.php" class="menu2">
         <div>Log in</div>
         <img id="login" src="imagenes/login.png" alt="Login">
     </a>
@@ -58,6 +58,7 @@ session_start();
         <div id="medio">Medio</div>
         <div id="avanzado" class="">Avanzado</div>
     </div>
+    <div id="ejercicios"></div>
 </div>
 </body>
 </html>

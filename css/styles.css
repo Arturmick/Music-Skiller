@@ -189,6 +189,28 @@ body {
     
     
 }  
+#ejercicios {
+    width: 100%;
+    height: 350px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    
+}
+#ejercicios div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#ejercicios img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    border: 2px solid silver;
+    border-radius: 10px;
+}
 /****************************** log in ******************************/
 #tituloLogin {
     color: white;
@@ -305,6 +327,9 @@ body {
     color: rgb(74, 123, 248);
     font-size: large;
     text-decoration: none;
+}
+#newUserLink a:hover {
+    text-decoration: underline;
 }
 #mensajeLogin {
     color: rgb(255, 0, 0);

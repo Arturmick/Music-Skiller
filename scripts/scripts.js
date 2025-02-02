@@ -34,7 +34,7 @@ function submitSignIn() {
                 .then(data => {
                     if (data.status === 'success') {
                         alert("Usuario registrado correctamente. Por favor, inicie sesión.");
-                        window.location.href = 'login.html'; // Redirect to index.html                       
+                        window.location.href = 'login.php'; // Redirect to index.html                       
                     } else {
                         mensajePass.textContent = `${data.message}`;
                     }
@@ -58,7 +58,7 @@ function submitLogin() {
 
             const mensajeLogin = document.getElementById("mensajeLogin");
             if (mensajeLogin) {
-                fetch("login.php", {
+                fetch("loginBack.php", {
                     method: 'POST',
                     body: formData
                 })
@@ -100,7 +100,8 @@ function eventosClick() {
                     event.target.classList.add('pulsado');
                     pulsadoNivel = true;
                 }
-                checkButtons();
+                identifyButtons
+                ();
             }
         });
     }
@@ -120,24 +121,66 @@ function eventosClick() {
                     event.target.classList.add('pulsado');
                     pulsadoEjercicio = true;
                 }
-                checkButtons();
+                identifyButtons();
             }
         });
     }
 }
 
-function checkButtons() {
+function identifyButtons() {
     if (pulsadoEjercicio && pulsadoNivel) {
         const nivelPulsado = document.querySelector('#nivel .pulsado');
         const ejercicioPulsado = document.querySelector('.ejercicios .pulsado');
         
         if (nivelPulsado && ejercicioPulsado) {
             console.log(`Nivel pulsado: ${nivelPulsado.textContent}`);
-            console.log(`Ejercicio pulsado: ${ejercicioPulsado.textContent}`);
+            console.log(`Ejercicio pulsado: ${ejercicioPulsado.textContent}`);            
+            elegirEjercicio(nivelPulsado.textContent, ejercicioPulsado.textContent);
         }
     } else {
         console.log("No buttons are pressed");
     }
+}
+function elegirEjercicio(nivel, ejercicio) {
+
+    fetch('elegirEjercicio.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            nivel: nivel,
+            ejercicio: ejercicio
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        console.log("Respuesta del servidor:", data);
+
+        if (data.error) {
+            console.error(data.message);
+        } else {
+            const container = document.getElementById('ejercicios');
+            if (container) {
+                container.innerHTML = ''; // Clear previous results
+                data.results.forEach(result => {
+
+                    console.log("Imagen recibida:", result.imagenPquena);
+
+                    const div = document.createElement('div');
+                    const img = document.createElement('img');
+                    img.src = result.imagenPquena; // Assuming the result object has an imageUrl property
+                    div.appendChild(img);
+                    container.appendChild(div);
+                });
+            }
+            console.log(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 
 function confirmLogin() {

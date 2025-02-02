@@ -15,7 +15,7 @@ session_destroy();
 </head>
 <body>
 <div class="cabecera">
-    <a href="index.html" class="menuLogo">
+    <a href="index.php" class="menuLogo">
         <img class="logo" src="imagenes/musica skilller3.png" alt="Logo">
     </a>
     <div id="nombreCabecera">Music Skiller</div>
@@ -34,7 +34,7 @@ session_destroy();
 
     <?php } else { ?>
 
-        <a href="login.html" class="menu2">
+        <a href="login.php" class="menu2">
             <div>Log in</div>
             <img id="login" src="imagenes/login.png" alt="Login">
         </a>

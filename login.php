@@ -1,56 +1,78 @@
 <?php
 session_start();
-
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$database = "music_skiller_bd";
-
-header('Content-Type: application/json');
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nick = $_POST['nick'];
-    $pass = $_POST['pass'];
-
-    if (empty($nick) || empty($pass)) {
-        echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios."]);
-    } else {
-        $link = mysqli_connect($hostname, $username, $password, $database);
-
-        if (!$link) {
-            echo json_encode(["status" => "error", "message" => "No se pudo conectar a MySQL."]);
-        } else {
-            $query = "SELECT email, instrumento, nombre, telefono, direccion FROM usuario WHERE nick = ? AND password = ?";
-            $stmt = mysqli_prepare($link, $query);
-
-            if ($stmt) {
-                mysqli_stmt_bind_param($stmt, "ss", $nick, $pass);
-                mysqli_stmt_execute($stmt);
-                mysqli_stmt_store_result($stmt);
-                mysqli_stmt_bind_result($stmt,$email,$instrumento,$nombre, $telefono, $direccion);
-
-                if (mysqli_stmt_num_rows($stmt) > 0) {
-                    mysqli_stmt_fetch($stmt);
-                    $_SESSION['nick'] = $nick;
-                    $_SESSION['email'] = $email;
-                    $_SESSION['instrumento'] = $instrumento;
-                    $_SESSION['nombre'] = $nombre;
-                    $_SESSION['telefono'] = $telefono;
-                    $_SESSION['direccion'] = $direccion;
-                    echo json_encode(["status" => "success", "message" => "Acceso concedido."]);
-                } else {
-                    echo json_encode(["status" => "error", "message" => "Usuario o contraseña incorrectos."]);
-                }
-
-                mysqli_stmt_close($stmt);
-            } else {
-                echo json_encode(["status" => "error", "message" => "Error al preparar la consulta: " . mysqli_error($link)]);
-            }
-
-            mysqli_close($link);
-        }
-    }
-} else {
-    echo json_encode(["status" => "error", "message" => "Método de solicitud no válido."]);
-}
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Skiller</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="scripts/scripts.js"></script>
+</head>
+<body>
+    <div class="cabecera"> 
+        <a href="index.php" class="menuLogo">
+            <img class="logo" src="imagenes/musica skilller3.png" alt="Logo">
+        </a>  
+        <div id="nombreCabecera">Music Skiller</div>
+        <div class="menu">
+            <div>INICIO</div>
+            <div>CONOCENOS</div>
+            <div>SERVICIOS</div>
+            <div>PORFOLIO</div> 
+            <div id="textoGrande">SOLICITA PRESUPUESTO</div>           
+        </div>                                
+        </div>
+    </div>
+    <div class="tituloSelector">
+        <img src="imagenes/trombon.png" alt="">
+        <div id="instrumento">Log In</div>
+    </div>    
+    <div id="tituloLogin">Introduzca sus datos</div>
+    <div id="decoracionLogin">
+        <div id="formulario">       
+        
+            <form action="login.php" method="post" id="loginForm">            
+                <div id="labels">
+                    <label for="nick">Usuario:</label>
+                    <input type="text" id="nick" name="nick" required placeholder="Escriba aquí">
+                    <label for="pass">Contraseña:</label>
+                    <input type="password" id="pass" name="pass" required placeholder="Escriba aquí">   
+                </div>   
+                <input id="acceder" type="submit" value="Acceder">
+            </form>        
+        </div>
+        <div id="newUserLink">
+            <a href="newUser.html">Crear nueva cuenta</a>
+        </div>
+        <div id="mensajeLogin" class=""></div>
+    </div>    
+    <script>
+        const registroForm = document.getElementById('registroForm');
+
+        if (registroForm) {
+            registroForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+
+                fetch('new_user.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        var textoDiv = document.getElementById('texto');
+                        if (data.status === 'success') {
+                            textoDiv.textContent = data.message;
+                            window.location.href = 'index.html'; // Redirect to index.html
+                        } else {
+                            textoDiv.textContent = data.message;
+                        }
+                    })
+
+            });
+        }
+    </script>
+</body>
+</html>

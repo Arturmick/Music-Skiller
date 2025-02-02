@@ -12,7 +12,7 @@ session_start();
 </head>
 <body>
 <div class="cabecera">
-    <a href="index.html" class="menuLogo">
+    <a href="index.php" class="menuLogo">
         <img class="logo" src="imagenes/musica skilller3.png" alt="Logo">
     </a>
     <div id="nombreCabecera">Music Skiller</div>
@@ -31,7 +31,7 @@ session_start();
 
     <?php } else { ?>
 
-        <a href="login.html" class="menu2">
+        <a href="login.php" class="menu2">
             <div>Log in</div>
             <img id="login" src="imagenes/login.png" alt="Login">
         </a>
@@ -50,22 +50,22 @@ session_start();
 
             <div id="loginForm">
                 <div id="labels">
-                    <div>Usuario: <?php echo htmlspecialchars($_SESSION['nick']); ?></div>
+                    <div>Usuario: <br><?php echo htmlspecialchars($_SESSION['nick']); ?><br><br></div>
                     <?php if (isset($_SESSION['email'])) { ?>
-                        <div>Email: <?php echo htmlspecialchars($_SESSION['email']); ?></div>
+                        <div>Email: <br><?php echo htmlspecialchars($_SESSION['email']); ?><br><br></div>
                     <?php } ?>
                     <?php if (isset($_SESSION['instrumento'])) { ?>
-                        <div>Instrumento: <?php echo htmlspecialchars($_SESSION['instrumento']); ?></div>
+                        <div>Instrumento: <br><?php echo htmlspecialchars($_SESSION['instrumento']); ?><br><br></div>
                     <?php } ?>
-                    <?php if (isset($_SESSION['nombre'])) { ?>
-                        <div>Nombre: <?php echo htmlspecialchars($_SESSION['nombre']); ?></div>
-                    <?php } ?>
-                    <?php if (isset($_SESSION['teléfono'])) { ?>
-                        <div>Teléfono: <?php echo htmlspecialchars($_SESSION['teléfono']); ?></div>
-                    <?php } ?>
-                    <?php if (isset($_SESSION['dirección'])) { ?>
-                        <div>Dirección: <?php echo htmlspecialchars($_SESSION['dirección']); ?></div>
-                    <?php } ?>
+<!--                    --><?php //if (isset($_SESSION['nombre'])) { ?>
+<!--                        <div>Nombre: --><?php //echo htmlspecialchars($_SESSION['nombre']); ?><!--</div>-->
+<!--                    --><?php //} ?>
+<!--                    --><?php //if (isset($_SESSION['teléfono'])) { ?>
+<!--                        <div>Teléfono: --><?php //echo htmlspecialchars($_SESSION['teléfono']); ?><!--</div>-->
+<!--                    --><?php //} ?>
+<!--                    --><?php //if (isset($_SESSION['dirección'])) { ?>
+<!--                        <div>Dirección: --><?php //echo htmlspecialchars($_SESSION['dirección']); ?><!--</div>-->
+<!--                    --><?php //} ?>
                 </div>
                 <a id="acceder" href="logOut.php">Cerar sesión</a>
             </div>
