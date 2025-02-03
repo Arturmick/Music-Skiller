@@ -42,17 +42,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_stmt_num_rows($stmt) > 0) {
             mysqli_stmt_bind_result($stmt, $imagenPequena, $imagenGrande);
-            mysqli_stmt_fetch($stmt);
+            $results = [];
 
-            error_log("Imagen Pequeña: " . $imagenPequena);
-            error_log("Imagen Grande: " . $imagenGrande);
+            while (mysqli_stmt_fetch($stmt)) {
+				$results[] = ["imagenPequena" => $imagenPequena, "imagenGrande" => $imagenGrande];
+			}
 
             echo json_encode([
                 "status" => "success",
                 "message" => "Ejercicio encontrado.",
-                "results" => [
-                    ["imagenPquena" => $imagenPequena, "imagenGrande" => $imagenGrande]
-                ]
+                "results" => $results
             ]);
         } else {
             echo json_encode(["status" => "error", "message" => "Ejercicio no encontrado."]);

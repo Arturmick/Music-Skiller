@@ -11,6 +11,7 @@ session_start();
     <script src="scripts/scripts.js"></script>
 </head>
 <body>
+
 <div class="cabecera">
     <a href="index.php" class="menuLogo">
         <img class="logo" src="imagenes/musica skilller3.png" alt="Logo">
@@ -19,9 +20,11 @@ session_start();
     <div class="menu">
         <div>INICIO</div>
         <div>CONOCENOS</div>
+        <div>CONOCENOS</div>
         <div>SERVICIOS</div>
         <div>PORFOLIO</div>
     </div>
+    
     <?php if (isset($_SESSION['nick'])) { ?>
 
         <a href="userData.php" class="menu3">

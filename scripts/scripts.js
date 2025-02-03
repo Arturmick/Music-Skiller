@@ -125,6 +125,7 @@ function eventosClick() {
             }
         });
     }
+    
 }
 
 function identifyButtons() {
@@ -160,17 +161,23 @@ function elegirEjercicio(nivel, ejercicio) {
 
         if (data.error) {
             console.error(data.message);
+            console.log(data);
         } else {
             const container = document.getElementById('ejercicios');
             if (container) {
                 container.innerHTML = ''; // Clear previous results
                 data.results.forEach(result => {
 
-                    console.log("Imagen recibida:", result.imagenPquena);
+                    console.log("Imagen recibida:", result.imagenPequena);
 
                     const div = document.createElement('div');
                     const img = document.createElement('img');
-                    img.src = result.imagenPquena; // Assuming the result object has an imageUrl property
+                    img.src = result.imagenPequena; // Assuming the result object has an imageUrl property
+                    img.addEventListener('click', () => {
+                        console.log(`Imagen ${result.imagenPequena} clickeada`);
+                        window.location.href = `ejercicio.php?id=${result.imagenGrande}&nivel=${nivel}&ejercicio=${ejercicio}`;
+                        // Add your click handling logic here
+                    });
                     div.appendChild(img);
                     container.appendChild(div);
                 });
