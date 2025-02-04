@@ -126,6 +126,9 @@ body {
     height: auto;
     margin-right: 20px;
 }
+.selectores {
+    width: 50%;
+}
 .selectores div {
     background-color: rgb(0, 0, 0);
     border: 1px solid white;
@@ -217,6 +220,41 @@ body {
     border: 5px solid #0026ff;
     box-shadow: inset 12px 12px 18px 13px rgb(255, 0, 0);
 }
+.selectorTonalidad {
+display: flex;
+justify-content: center;
+}
+#tonalidad {
+    margin-top: 20px;
+    color: white;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    
+}
+#tonalidad div {
+    width: 5%;
+}
+#tonalidad div:hover {
+    background-color: #ffa500;
+    color: white;
+    transition: 0.5s;
+}
+
+/**************************** partitura ****************************/
+
+#partitura {
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    
+}
+#partitura img {
+    width: 100%;
+}
+
 /****************************** log in ******************************/
 #tituloLogin {
     color: white;

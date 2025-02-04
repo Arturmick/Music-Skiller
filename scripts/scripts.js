@@ -1,5 +1,6 @@
 let pulsadoEjercicio = false;
 let pulsadoNivel = false;
+let pulsadoTonalidad = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     eventosClick();
@@ -84,6 +85,7 @@ function submitLogin() {
 function eventosClick() {
     const nivelDiv = document.getElementById('nivel');
     const ejercicios = document.querySelector('.ejercicios');
+    const tonalidad = document.getElementById('tonalidad');
 
     if (nivelDiv) {
         nivelDiv.addEventListener('click', (event) => {
@@ -125,7 +127,37 @@ function eventosClick() {
             }
         });
     }
-    
+    if (tonalidad) {
+        tonalidad.addEventListener('click', (event) => {
+            if (event.target !== tonalidad && event.target.tagName === 'DIV') {
+                if (event.target.classList.contains('pulsado')) {
+                    event.target.classList.remove('pulsado');
+                    pulsadoTonalidad = false;
+                } else {
+                    const currentlyPulsado = tonalidad.querySelector('.pulsado');
+                    if (currentlyPulsado) {
+                        currentlyPulsado.classList.remove('pulsado');
+                        pulsadoTonalidad = false;
+                    }
+                    event.target.classList.add('pulsado');
+                    pulsadoTonalidad = true;  
+                }
+                identifyButtonsTonalidad();
+            }
+        });
+    }
+}
+function identifyButtonsTonalidad() {
+    if (pulsadoTonalidad) {
+        const tonalidadPulsado = document.querySelector('#tonalidad .pulsado');        
+        
+        if (tonalidadPulsado) {
+            console.log(`Tonalidad pulsado: ${tonalidadPulsado.textContent}`);                  
+            elegirEjercicio(tonalidadPulsado);
+        }
+    } else {
+        console.log("No buttons are pressed");
+    }
 }
 
 function identifyButtons() {
@@ -141,6 +173,48 @@ function identifyButtons() {
     } else {
         console.log("No buttons are pressed");
     }
+}
+
+function elegirTonalidad(tonalidad) {
+
+    fetch('elegirTonalidad.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            tonalidad: tonalidad
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        console.log("Respuesta del servidor:", data);
+
+        if (data.error) {
+            console.error(data.message);
+            console.log(data);
+        } else {
+            const container = document.getElementById('ejercicios');
+            if (container) {
+                container.innerHTML = ''; // Clear previous results
+                data.results.forEach(result => {
+
+                    console.log("Imagen recibida:", result.imagenGrande);
+
+                    const div = document.createElement('div');
+                    const img = document.createElement('img');
+                    img.src = result.imagenGrande; // Assuming the result object has an imageUrl property
+                    div.appendChild(img);
+                    container.appendChild(div);
+                });
+            }
+            console.log(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 function elegirEjercicio(nivel, ejercicio) {
 
@@ -175,7 +249,7 @@ function elegirEjercicio(nivel, ejercicio) {
                     img.src = result.imagenPequena; // Assuming the result object has an imageUrl property
                     img.addEventListener('click', () => {
                         console.log(`Imagen ${result.imagenPequena} clickeada`);
-                        window.location.href = `ejercicio.php?id=${result.imagenGrande}&nivel=${nivel}&ejercicio=${ejercicio}`;
+                        window.location.href = `ejercicio.php?imagenGrande=${result.imagenGrande}&nivel=${nivel}&ejercicio=${ejercicio}`;
                         // Add your click handling logic here
                     });
                     div.appendChild(img);

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$id = isset($_GET['id']) ? $_GET['id'] : null;
+$imagenGrande = isset($_GET['imagenGrande']) ? $_GET['imagenGrande'] : null;
 $nivel = isset($_GET['nivel']) ? $_GET['nivel'] : null;
 $ejercicio = isset($_GET['ejercicio']) ? $_GET['ejercicio'] : null;
 ?>
@@ -47,30 +47,29 @@ $ejercicio = isset($_GET['ejercicio']) ? $_GET['ejercicio'] : null;
 </div>
 <div class="tituloSelector">
 	<img src="imagenes/trombon.png" alt="">
-	<div id="instrumento"></div>
+	<div id="instrumento"><div id="instrumento"><?php echo htmlspecialchars($nivel . ' ' . $ejercicio); ?></div></div>
 </div>
-<div class="selectorEjercicio">
-	<div class="selectores ejercicios">
-		<div id="escalas">Escalas</div>
-		<div id="arpegios">Arpegios</div>
-		<div id="picado">Picado</div>
-		<div id="ligado">Ligado</div>
-		<div id="trino">Trino</div>
-		<div id="agudos">Agudos</div>
-		<div id="grvaes">Graves</div>
-		<div id="flexibilidad">Flexibilidad</div>
-	</div>
-	<div id='nivel' class="selectores">
-		<div id="do">DO</div>
+<div class="selectorTonalidad">
+	<div id='tonalidad' class="selectores">
+		<div id="do">Do</div>
 		<div id="fa">Fa</div>
 		<div id="Sib">Sib</div>
-        <div id="do">DO</div>
-        <div id="fa">Fa</div>
-        <div id="Sib">Sib</div>
+        <div id=mib>Mib</div>
+        <div id="lab">Lab</div>
+        <div id="reb">Reb</div>
+        <div id="solb">Solb</div>
+        <div id="dob">Dob</div>
+        <div id="sol">Sol</div>
+        <div id="re">Re</div>
+        <div id="la">La</div>
+        <div id="mi">Mi</div>
+        <div id="si">Si</div>
+        <div id="fa#">Fa#</div>
+        <div id="do#">Do#</div>
 	</div>
-	<div id="ejercicios">
-		<img src="<?php echo htmlspecialchars($id); ?>" alt=""<img src="<?php echo htmlspecialchars($id); ?>" alt="<?php echo htmlspecialchars($nivel . ' ' . $ejercicio); ?>">>
-	</div>
+</div>
+<div id="partitura">
+    <img src="<?php echo htmlspecialchars($imagenGrande); ?>" alt=""<img src="<?php echo htmlspecialchars($imagenGrande); ?>" alt="<?php echo htmlspecialchars($nivel . ' ' . $ejercicio); ?>">
 </div>
 </body>
 </html>
