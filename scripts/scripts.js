@@ -85,7 +85,7 @@ function submitLogin() {
 function eventosClick() {
     const nivelDiv = document.getElementById('nivel');
     const ejercicios = document.querySelector('.ejercicios');
-    const tonalidad = document.getElementById('tonalidad');
+    const tonalidad = document.querySelector('.tonalidad');
 
     if (nivelDiv) {
         nivelDiv.addEventListener('click', (event) => {
@@ -149,11 +149,15 @@ function eventosClick() {
 }
 function identifyButtonsTonalidad() {
     if (pulsadoTonalidad) {
-        const tonalidadPulsado = document.querySelector('#tonalidad .pulsado');        
+        const tonalidadPulsado = document.querySelector('.tonalidad .pulsado');        
         
         if (tonalidadPulsado) {
-            console.log(`Tonalidad pulsado: ${tonalidadPulsado.textContent}`);                  
-            elegirEjercicio(tonalidadPulsado);
+            console.log(`Tonalidad pulsado: ${tonalidadPulsado.textContent}`); 
+                if (tonalidadPulsado.textContent.includes('#')) {
+                    tonalidadPulsado.textContent = tonalidadPulsado.textContent.replace('#', 'Sharp');
+                }
+
+            elegirTonalidad(tonalidadPulsado.textContent);
         }
     } else {
         console.log("No buttons are pressed");
@@ -177,6 +181,7 @@ function identifyButtons() {
 
 function elegirTonalidad(tonalidad) {
 
+    console.log(tonalidad);
     fetch('elegirTonalidad.php', {
         method: 'POST',
         headers: {
@@ -195,16 +200,17 @@ function elegirTonalidad(tonalidad) {
             console.error(data.message);
             console.log(data);
         } else {
-            const container = document.getElementById('ejercicios');
+            const container = document.getElementById('partitura');
+            console.log("Container:", container);
             if (container) {
-                container.innerHTML = ''; // Clear previous results
+                container.innerHTML = ''; 
                 data.results.forEach(result => {
 
                     console.log("Imagen recibida:", result.imagenGrande);
 
                     const div = document.createElement('div');
                     const img = document.createElement('img');
-                    img.src = result.imagenGrande; // Assuming the result object has an imageUrl property
+                    img.src = result.imagenGrande; 
                     div.appendChild(img);
                     container.appendChild(div);
                 });
@@ -238,6 +244,7 @@ function elegirEjercicio(nivel, ejercicio) {
             console.log(data);
         } else {
             const container = document.getElementById('ejercicios');
+            console.log("Container:", container);
             if (container) {
                 container.innerHTML = ''; // Clear previous results
                 data.results.forEach(result => {

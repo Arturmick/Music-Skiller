@@ -31,20 +31,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	
 	// Preparar la consulta
-	$query = "SELECT imagenPequena, imagenGrande FROM ejercicios WHERE nivel = ? AND ejercicio = ?";
+	$query = "SELECT imagenGrande FROM intervalos_avanzado_1 WHERE tonalidad = ?";
 	$stmt = mysqli_prepare($link, $query);
 	
 	if ($stmt) {
-		mysqli_stmt_bind_param($stmt, "ss", $nivel, $ejercicio);
+		mysqli_stmt_bind_param($stmt, "s", $tonalidad);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_store_result($stmt);
 		
 		if (mysqli_stmt_num_rows($stmt) > 0) {
-			mysqli_stmt_bind_result($stmt, $imagenPequena, $imagenGrande);
+			mysqli_stmt_bind_result($stmt, $imagenGrande);
 			$results = [];
 			
 			while (mysqli_stmt_fetch($stmt)) {
-				$results[] = ["imagenPequena" => $imagenPequena, "imagenGrande" => $imagenGrande];
+				$results[] = ["imagenGrande" => $imagenGrande];
 			}
 			
 			echo json_encode([

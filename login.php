@@ -20,8 +20,6 @@ session_start();
             <div>INICIO</div>
             <div>CONOCENOS</div>
             <div>SERVICIOS</div>
-            <div>PORFOLIO</div> 
-            <div id="textoGrande">SOLICITA PRESUPUESTO</div>           
         </div>                                
         </div>
     </div>

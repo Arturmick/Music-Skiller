@@ -24,9 +24,7 @@ $ejercicio = isset($_GET['ejercicio']) ? $_GET['ejercicio'] : null;
 	<div class="menu">
 		<div>INICIO</div>
 		<div>CONOCENOS</div>
-		<div>CONOCENOS</div>
 		<div>SERVICIOS</div>
-		<div>PORFOLIO</div>
 	</div>
 	
 	<?php if (isset($_SESSION['nick'])) { ?>
@@ -50,7 +48,7 @@ $ejercicio = isset($_GET['ejercicio']) ? $_GET['ejercicio'] : null;
 	<div id="instrumento"><div id="instrumento"><?php echo htmlspecialchars($nivel . ' ' . $ejercicio); ?></div></div>
 </div>
 <div class="selectorTonalidad">
-	<div id='tonalidad' class="selectores">
+	<div class="selectores tonalidad">
 		<div id="do">Do</div>
 		<div id="fa">Fa</div>
 		<div id="Sib">Sib</div>

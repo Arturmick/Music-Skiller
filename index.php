@@ -20,9 +20,7 @@ session_start();
     <div class="menu">
         <div>INICIO</div>
         <div>CONOCENOS</div>
-        <div>CONOCENOS</div>
         <div>SERVICIOS</div>
-        <div>PORFOLIO</div>
     </div>
     
     <?php if (isset($_SESSION['nick'])) { ?>
@@ -48,7 +46,7 @@ session_start();
 <div class="selectorEjercicio">
     <div class="selectores ejercicios">
         <div id="escalas">Escalas</div>
-        <div id="arpegios">Arpegios</div>
+        <div id="arpegios">Intervalos</div>
         <div id="picado">Picado</div>
         <div id="ligado">Ligado</div>
         <div id="trino">Trino</div>
