@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Skiller</title>
+    <link rel="icon" href="imagenes/logoFondoBlanco.png" type="image/png">
     <link rel="stylesheet" href="css/styles.css">
     <script src="scripts/scripts.js"></script>
 </head>
@@ -39,7 +40,7 @@ session_start();
     <?php } ?>
 </div>
 </div>
-<div class="tituloSelector">
+<div class="tituloSelectorMenu">
     <img src="imagenes/trombon.png" alt="">
     <div id="instrumento">Trombón</div>
 </div>
@@ -59,7 +60,8 @@ session_start();
         <div id="medio">Medio</div>
         <div id="avanzado" class="">Avanzado</div>
     </div>
-    <div id="ejercicios"></div>
+    <div id="ejercicios">
+    </div>
 </div>
 </body>
 </html>

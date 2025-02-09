@@ -23,7 +23,7 @@ session_start();
         </div>                                
         </div>
     </div>
-    <div class="tituloSelector">
+    <div class="tituloSelectorMenu">
         <img src="imagenes/trombon.png" alt="">
         <div id="instrumento">Log In</div>
     </div>    

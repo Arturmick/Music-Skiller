@@ -40,9 +40,9 @@ session_start();
 
 <?php if (isset($_SESSION['nick'])) { ?>
 
-    <div class="tituloSelector">
+    <div class="tituloSelectorMenu">
         <img src="imagenes/trombon.png" alt="">
-        <div id="instrumento"><?php echo htmlspecialchars($_SESSION['nick']); ?></div>
+        <div id="instrumento">Hola <?php echo htmlspecialchars($_SESSION['nick']); ?></div>
     </div>
     <div id="tituloLogin">Perfil:</div>
     <div id="decoracionLogin">

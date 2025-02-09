@@ -43,7 +43,7 @@ session_destroy();
 
 <?php if (isset($_SESSION['nick'])) { ?>
 
-    <div class="tituloSelector">
+    <div class="tituloSelectorMenu">
         <img src="imagenes/trombon.png" alt="">
         <div id="instrumento"><?php echo htmlspecialchars($_SESSION['nick']); ?></div>
     </div>
@@ -81,7 +81,7 @@ session_destroy();
 
 <?php } else { ?>
 
-    <div class="tituloSelector">
+    <div class="tituloSelectorMenu">
         <img src="imagenes/trombon.png" alt="">
         <div id="instrumento">Adiós</div>
     </div>

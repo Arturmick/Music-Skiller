@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     submitSignIn();
     submitLogin();
     //confirmLogin();
+    checkLoginStatus();
 });
 
 function submitSignIn() {
@@ -86,6 +87,9 @@ function eventosClick() {
     const nivelDiv = document.getElementById('nivel');
     const ejercicios = document.querySelector('.ejercicios');
     const tonalidad = document.querySelector('.tonalidad');
+    const controles = document.querySelector('.controles');
+    const audio = document.getElementById("audioElement");
+    const playButton = document.getElementById("play");
 
     if (nivelDiv) {
         nivelDiv.addEventListener('click', (event) => {
@@ -146,6 +150,20 @@ function eventosClick() {
             }
         });
     }
+    if (controles) {
+        let audio = new Audio('../audios/Music Skiller Intervalos Avanzado 1.mp3'); // Replace 'your-audio-file.mp3' with the actual audio file name
+        controles.addEventListener("click", () => {
+            if (audio.paused) {
+                playButton.innerHTML = '<img src="../imagenes/pausa.png" alt="Pause">';
+                audio.play();
+            } else {
+                playButton.innerHTML = '<img src="../imagenes/jugar.png" alt="Play">';
+                audio.pause();
+                audio.currentTime = 0; // Reset the audio to the beginning
+            }
+        });
+    }
+
 }
 function identifyButtonsTonalidad() {
     if (pulsadoTonalidad) {
@@ -214,6 +232,7 @@ function elegirTonalidad(tonalidad) {
                     div.appendChild(img);
                     container.appendChild(div);
                 });
+                
             }
             console.log(data.message);
         }
@@ -223,52 +242,100 @@ function elegirTonalidad(tonalidad) {
     });
 }
 function elegirEjercicio(nivel, ejercicio) {
-
-    fetch('elegirEjercicio.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            nivel: nivel,
-            ejercicio: ejercicio
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-
-        console.log("Respuesta del servidor:", data);
-
-        if (data.error) {
-            console.error(data.message);
-            console.log(data);
-        } else {
+    fetch('check_login.php')
+        .then(response => response.json())
+        .then(data => {
             const container = document.getElementById('ejercicios');
-            console.log("Container:", container);
-            if (container) {
-                container.innerHTML = ''; // Clear previous results
-                data.results.forEach(result => {
-
-                    console.log("Imagen recibida:", result.imagenPequena);
-
-                    const div = document.createElement('div');
-                    const img = document.createElement('img');
-                    img.src = result.imagenPequena; // Assuming the result object has an imageUrl property
-                    img.addEventListener('click', () => {
-                        console.log(`Imagen ${result.imagenPequena} clickeada`);
-                        window.location.href = `ejercicio.php?imagenGrande=${result.imagenGrande}&nivel=${nivel}&ejercicio=${ejercicio}`;
-                        // Add your click handling logic here
-                    });
-                    div.appendChild(img);
-                    container.appendChild(div);
+            if (data.loggedIn) {
+                fetch('elegirEjercicio.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nivel: nivel,
+                        ejercicio: ejercicio
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Respuesta del servidor:", data);
+                    if (data.error) {
+                        console.error(data.message);
+                        console.log(data);
+                    } else {
+                        if (container) {
+                            container.innerHTML = ''; // Clear previous results
+                            data.results.forEach(result => {
+                                console.log("Imagen recibida:", result.imagenPequena);
+                                const div = document.createElement('div');
+                                const img = document.createElement('img');
+                                img.src = result.imagenPequena; // Assuming the result object has an imageUrl property
+                                img.addEventListener('click', () => {
+                                    console.log(`Imagen ${result.imagenPequena} clickeada`);
+                                    window.location.href = `ejercicio.php?imagenGrande=${result.imagenGrande}&nivel=${nivel}&ejercicio=${ejercicio}`;
+                                });
+                                div.appendChild(img);
+                                container.appendChild(div);
+                            });
+                        }
+                        console.log(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            } else {
+                fetch('elegirEjercicio.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nivel: nivel,
+                        ejercicio: ejercicio
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Respuesta del servidor:", data);
+                    if (data.error) {
+                        console.error(data.message);
+                        console.log(data);
+                    } else {
+                        if (container) {
+                            container.innerHTML = ''; // Clear previous results
+                            if (data.results && data.results.length > 0) {
+                                const result = data.results[0];
+                                console.log("Imagen recibida:", result.imagenPequena);
+                                const div = document.createElement('div');
+                                const img = document.createElement('img');
+                                img.src = result.imagenPequena; // Assuming the result object has an imageUrl property
+                                img.addEventListener('click', () => {
+                                    console.log(`Imagen ${result.imagenPequena} clickeada`);
+                                    window.location.href = `ejercicio.php?imagenGrande=${result.imagenGrande}&nivel=${nivel}&ejercicio=${ejercicio}`;
+                                });
+                                div.appendChild(img);
+                                container.appendChild(div);
+                                console.log("entra");
+                                if (data.results.length > 1) {
+                                    const protector = document.createElement('div');
+                                    protector.className = 'protector';
+                                    protector.textContent = 'Log in para ver más ejercicios';
+                                    container.appendChild(protector);
+                                }
+                            }
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                 });
             }
-            console.log(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        })
+        .catch(error => {
+            console.error('Error checking login status:', error);
+        });
 }
 
 function confirmLogin() {
@@ -324,4 +391,22 @@ function confirmResgistro() {
                     textoDiv.textContent = 'An error occurred. Please try again later.';
                 }
             });
-};
+}
+
+function checkLoginStatus() {
+    const protector = document.querySelector('.protector');
+    if (protector) {
+        fetch('check_login.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.loggedIn) {
+                    protector.style.display = 'none';
+                } else {
+                    protector.style.display = 'flex';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking login status:', error);
+            });
+    }
+}
