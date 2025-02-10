@@ -23,7 +23,6 @@ session_destroy();
         <div>INICIO</div>
         <div>CONOCENOS</div>
         <div>SERVICIOS</div>
-        <div>PORFOLIO</div>
 
     </div>
     <?php if (isset($_SESSION['nick'])) { ?>
