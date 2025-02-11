@@ -207,6 +207,7 @@ function elegirTonalidad(tonalidad) {
         },
         body: JSON.stringify({
             tonalidad: tonalidad
+            //aquí siempre pasa el ejercicio de "avanzado intervalos", tengo que poner el ID para que pase el ejercicio correcto
         })
     })
     .then(response => response.json())

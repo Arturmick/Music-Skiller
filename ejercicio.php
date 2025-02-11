@@ -67,7 +67,7 @@ $ejercicio = isset($_GET['ejercicio']) ? $_GET['ejercicio'] : null;
 	</div>
 </div>
 <div id="partitura">
-    <img src="<?php echo htmlspecialchars($imagenGrande); ?>" alt=""<img src="<?php echo htmlspecialchars($imagenGrande); ?>" alt="<?php echo htmlspecialchars($nivel . ' ' . $ejercicio); ?>">
+    <img src="<?php echo htmlspecialchars($imagenGrande); ?>" alt="" <img src="<?php echo htmlspecialchars($imagenGrande); ?>" alt="<?php echo htmlspecialchars($nivel . ' ' . $ejercicio); ?>">
 </div>
 <div class="controles">
     <div id="play">

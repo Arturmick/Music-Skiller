@@ -206,7 +206,7 @@ body {
 }  
 #ejercicios {
     width: 100%;
-    height: 450px;
+    height: 325px;
     margin-top: 50px;
     display: flex;
     justify-content: center;
@@ -223,7 +223,7 @@ body {
 #ejercicios img {
     width: 90%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border: 2px solid #ff6822;
     border-radius: 10px;
     cursor: pointer;

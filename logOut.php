@@ -69,7 +69,7 @@ session_destroy();
                         <div>Dirección: <?php echo htmlspecialchars($_SESSION['dirección']); ?></div>
                     <?php } ?>
                 </div>
-                <a id="acceder" href="logOut.php">Cerar sesión</a>
+                <a id="acceder" href="logOut.php">Cerrar sesión</a>
             </div>
         </div>
         <div id="newUserLink">
