@@ -7,7 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Skiller</title>
-    <link rel="icon" href="imagenes/logoFondoBlanco.png" type="image/png">
+    <link rel="icon" href="imagenes/notas%20naranja.png" type="image/png">
     <link rel="stylesheet" href="css/styles.css">
     <script src="scripts/scripts.js"></script>
 </head>

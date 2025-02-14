@@ -411,3 +411,21 @@ function checkLoginStatus() {
             });
     }
 }
+
+/* OBSERVER */
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            console.log('Elemento visible');
+            entry.target.classList.add('animacion');
+        } else {
+            console.log('Elemento no visible');
+            entry.target.classList.remove('animacion');
+        }
+    });
+});
+
+const elementos = document.querySelectorAll("img");
+elementos.forEach(elemento => {
+    observer.observe(elemento);
+});
