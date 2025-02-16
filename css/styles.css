@@ -350,7 +350,7 @@ justify-content: center;
     width: 100%;
     height: auto;
     flex-direction: column;
-   
+    margin-top: 20px;
 }
 #labels label {
     width: 100%;
@@ -380,7 +380,7 @@ justify-content: center;
 }
 #labels2 input {
     width: 100%;
-    height: 160px;
+    height: 70px;
     font-size: 27px;    
     border-radius: 5px;
     margin-top: 10px;
@@ -436,7 +436,7 @@ justify-content: center;
 #decoracionLogin{
     border: 3px solid #ffbd41;
     background-color: #664c1b8e;
-    height: 700px;
+    height: 800px;
     border-radius: 25px;
     width: 70%;
     margin-left: auto;
@@ -446,7 +446,7 @@ justify-content: center;
 #decoracionRegistro{
     border: 3px solid #ffbd41;
     background-color: #664c1b8e;
-    height: 830px;
+    height: 920px;
     border-radius: 25px;
     width: 80%;
     margin-left: auto;
@@ -454,7 +454,8 @@ justify-content: center;
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    
+    flex-direction: column;
+    align-items: center;
 }
 #newUserLink {
     margin-top: 50px;
@@ -479,8 +480,8 @@ justify-content: center;
 #mensajeContraseña {
     color: rgb(250, 24, 24);
     text-align: center;
-    font-size: 25px;
-    margin-top: 0px;
+    font-size: 37px;
+    margin-top: 32px;
 }
 
 /*********************** salto de línea **************************/
@@ -488,6 +489,7 @@ justify-content: center;
     flex-basis: 100%; /* Ocupa toda la línea */
     height: 0; /* Opcional si no quieres que ocupe espacio visible */
   }
+
 
   /************************ clases ocultación **************************/
 

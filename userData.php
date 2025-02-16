@@ -100,33 +100,5 @@ session_start();
 
 
 <?php } ?>
-
-
-<script>
-    const registroForm = document.getElementById('registroForm');
-
-    if (registroForm) {
-        registroForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(this);
-
-            fetch('new_user.php', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    var textoDiv = document.getElementById('texto');
-                    if (data.status === 'success') {
-                        textoDiv.textContent = data.message;
-                        window.location.href = 'index.html'; // Redirect to index.html
-                    } else {
-                        textoDiv.textContent = data.message;
-                    }
-                })
-
-        });
-    }
-</script>
 </body>
 </html>

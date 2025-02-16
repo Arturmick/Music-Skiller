@@ -1,8 +1,5 @@
 <?php
 session_start();
-$old_user = $_SESSION['nick'];
-unset($_SESSION['nick']);
-session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,34 +43,31 @@ session_destroy();
         <img src="imagenes/trombon.png" alt="">
         <div id="instrumento"><?php echo htmlspecialchars($_SESSION['nick']); ?></div>
     </div>
-    <div id="tituloLogin">Introduzca sus datos</div>
+    <div id="tituloLogin">Bienvenido</div>
     <div id="decoracionLogin">
         <div id="formulario">
 
             <div id="loginForm">
                 <div id="labels">
-                    <div>Usuario: <?php echo htmlspecialchars($_SESSION['nick']); ?></div>
+                    <div>Usuario: <br><?php echo htmlspecialchars($_SESSION['nick']); ?><br><br></div>
                     <?php if (isset($_SESSION['email'])) { ?>
-                        <div>Email: <?php echo htmlspecialchars($_SESSION['email']); ?></div>
+                        <div>Email: <br><?php echo htmlspecialchars($_SESSION['email']); ?><br><br></div>
                     <?php } ?>
                     <?php if (isset($_SESSION['instrumento'])) { ?>
-                        <div>Instrumento: <?php echo htmlspecialchars($_SESSION['instrumento']); ?></div>
+                        <div>Instrumento: <br><?php echo htmlspecialchars($_SESSION['instrumento']); ?><br><br></div>
                     <?php } ?>
-                    <?php if (isset($_SESSION['nombre'])) { ?>
-                        <div>Nombre: <?php echo htmlspecialchars($_SESSION['nombre']); ?></div>
-                    <?php } ?>
-                    <?php if (isset($_SESSION['teléfono'])) { ?>
-                        <div>Teléfono: <?php echo htmlspecialchars($_SESSION['teléfono']); ?></div>
-                    <?php } ?>
-                    <?php if (isset($_SESSION['dirección'])) { ?>
-                        <div>Dirección: <?php echo htmlspecialchars($_SESSION['dirección']); ?></div>
-                    <?php } ?>
+                    <!--                    --><?php //if (isset($_SESSION['nombre'])) { ?>
+                    <!--                        <div>Nombre: --><?php //echo htmlspecialchars($_SESSION['nombre']); ?><!--</div>-->
+                    <!--                    --><?php //} ?>
+                    <!--                    --><?php //if (isset($_SESSION['teléfono'])) { ?>
+                    <!--                        <div>Teléfono: --><?php //echo htmlspecialchars($_SESSION['teléfono']); ?><!--</div>-->
+                    <!--                    --><?php //} ?>
+                    <!--                    --><?php //if (isset($_SESSION['dirección'])) { ?>
+                    <!--                        <div>Dirección: --><?php //echo htmlspecialchars($_SESSION['dirección']); ?><!--</div>-->
+                    <!--                    --><?php //} ?>
                 </div>
                 <a id="acceder" href="logOut.php">Cerrar sesión</a>
             </div>
-        </div>
-        <div id="newUserLink">
-            <a href="newUser.html">Crear nueva cuenta</a>
         </div>
         <div id="mensajeLogin" class=""></div>
     </div>
