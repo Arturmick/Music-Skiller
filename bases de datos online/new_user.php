@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$hostname = "10.123.0.167";
+$hostname = "mysql.freehostia.com";
 $username = "artmiq_music_skiller_db";
 $password = "Vp9CL31re(";
 $database = "artmiq_music_skiller_db";

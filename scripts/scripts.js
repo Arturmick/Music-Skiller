@@ -10,6 +10,79 @@ document.addEventListener('DOMContentLoaded', () => {
     checkLoginStatus();
 });
 
+function submitSignIn() {
+    const registroForm = document.getElementById('registroForm');
+
+    if (registroForm) {
+        registroForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            const mensajePass = document.getElementById("mensajeContraseña");
+            if (mensajePass) {
+                fetch("new_user.php", {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text()) // Get response as text
+                .then(text => {
+                    try {
+                        return JSON.parse(text); // Try to parse JSON
+                    } catch (error) {
+                        console.error('Invalid JSON response:', text);
+                        throw new Error('Invalid JSON response');
+                    }
+                })
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert("Usuario registrado correctamente. Por favor, inicie sesión.");
+                        window.location.href = 'login.php'; // Redirect to index.html                       
+                    } else {
+                        mensajePass.textContent = `${data.message}`;
+                    }
+                })
+                .catch(error => {
+                    mensajePass.textContent = "Error de conexión.";
+                    console.error("Error en la petición:", error);
+                });
+            }
+        });
+    }
+}
+
+function submitLogin() {
+    const registroForm = document.getElementById('loginForm');
+
+    if (registroForm) {
+        registroForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            const mensajeLogin = document.getElementById("mensajeLogin");
+            if (mensajeLogin) {
+                fetch("loginBack.php", {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json()) // Convertir la respuesta a JSON
+                .then(data => {            
+        
+                    if (data.error) {
+                        mensajeLogin.textContent = `${data.message}`;               
+                    }else {
+                        alert(`${data.message}`);
+                        window.location.href = 'index.php'; // Redirect to index.html                        
+                    }            
+                })
+                .catch(error => {
+                    mensajeLogin.textContent = "Error de conexión";
+                    console.error("Error en la petición:", error);
+                });                
+            }
+        });
+    }
+}
+
 function eventosClick() {
     const nivelDiv = document.getElementById('nivel');
     const ejercicios = document.querySelector('.ejercicios');
@@ -33,7 +106,8 @@ function eventosClick() {
                     event.target.classList.add('pulsado');
                     pulsadoNivel = true;
                 }
-                identifyButtons();
+                identifyButtons
+                ();
             }
         });
     }
@@ -77,7 +151,7 @@ function eventosClick() {
         });
     }
     if (controles) {
-        let audio = new Audio('../audios/Music Skiller Intervalos Avanzado 1.mp3'); 
+        let audio = new Audio('../audios/Music Skiller Intervalos Avanzado 1.mp3'); // Replace 'your-audio-file.mp3' with the actual audio file name
         controles.addEventListener("click", () => {
             if (audio.paused) {
                 playButton.innerHTML = '<img src="../imagenes/pausa.png" alt="Pause">';
@@ -85,87 +159,12 @@ function eventosClick() {
             } else {
                 playButton.innerHTML = '<img src="../imagenes/jugar.png" alt="Play">';
                 audio.pause();
-                audio.currentTime = 0; 
+                audio.currentTime = 0; // Reset the audio to the beginning
             }
         });
     }
 
 }
-function submitSignIn() {
-    const registroForm = document.getElementById('registroForm');
-
-    if (registroForm) {
-        registroForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(this);
-
-            const mensajePass = document.getElementById("mensajeContraseña");
-            if (mensajePass) {
-                fetch("new_user.php", {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text()) // Get response as text
-                .then(text => {
-                    try {
-                        return JSON.parse(text); // Try to parse JSON
-                    } catch (error) {
-                        console.error('Invalid JSON response:', text);
-                        throw new Error('Invalid JSON response');
-                    }
-                })
-                .then(data => {
-                    if (data.status === 'success') {
-                        //alert("Usuario registrado correctamente. Por favor, inicie sesión.");
-                        window.location.href = 'registroCorrecto.php'; // Redirect                       
-                    } else {
-                        mensajePass.textContent = `${data.message}`;
-                    }
-                })
-                .catch(error => {
-                    mensajePass.textContent = "Error de conexión.";
-                    console.error("Error en la petición:", error);
-                });
-            }
-        });
-    }
-}
-
-function submitLogin() {
-    const registroForm = document.getElementById('loginForm');
-
-    if (registroForm) {
-        registroForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(this);
-
-            const mensajeLogin = document.getElementById("mensajeLogin");
-            if (mensajeLogin) {
-                fetch("loginBack.php", {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json()) // Convertir la respuesta a JSON
-                .then(data => {            
-        
-                    if (data.error) {
-                        mensajeLogin.textContent = `${data.message}`;               
-                    }else {
-                        //mensajeLogin.textContent = `${data.message}`;
-                        //alert(`${data.message}`);
-                        window.location.href = 'loginCorrect.php'; // Redirect to index.html                        
-                    }            
-                })
-                .catch(error => {
-                    mensajeLogin.textContent = "Error de conexión";
-                    console.error("Error en la petición:", error);
-                });                
-            }
-        });
-    }
-}
-
-
 function identifyButtonsTonalidad() {
     if (pulsadoTonalidad) {
         const tonalidadPulsado = document.querySelector('.tonalidad .pulsado');        
@@ -208,6 +207,7 @@ function elegirTonalidad(tonalidad) {
         },
         body: JSON.stringify({
             tonalidad: tonalidad
+            //aquí siempre pasa el ejercicio de "avanzado intervalos", tengo que poner el ID para que pase el ejercicio correcto
         })
     })
     .then(response => response.json())
@@ -357,6 +357,10 @@ function confirmLogin() {
 }
 
 function confirmResgistro() {
+    
+
+
+
         fetch('new_user.php', {
             method: 'POST',
             body: formData
@@ -371,11 +375,11 @@ function confirmResgistro() {
                 }
             })
             .then(data => {
-                var textoDiv = document.getElementById('mensajeLogin');
+                var textoDiv = document.getElementById('texto');
                 if (textoDiv) {
                     if (data.status === 'success') {
-                        //textoDiv.textContent = data.message;
-                        //window.location.href = 'index.html'; // Redirect to index.html
+                        textoDiv.textContent = data.message;
+                        window.location.href = 'index.html'; // Redirect to index.html
                     } else {
                         textoDiv.textContent = data.message;
                     }
@@ -393,17 +397,44 @@ function confirmResgistro() {
 function checkLoginStatus() {
     const protector = document.querySelector('.protector');
     if (protector) {
-        fetch('check_login.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.loggedIn) {
-                    protector.style.display = 'none';
-                } else {
-                    protector.style.display = 'flex';
-                }
-            })
-            .catch(error => {
-                console.error('Error checking login status:', error);
-            });
+        fetch('check_login.php', {
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.loggedIn) {
+                protector.style.display = 'none';
+            } else {
+                protector.style.display = 'flex';
+            }
+        })
+        .catch(error => {
+            console.error('Error checking login status:', error);
+        });
     }
 }
+
+/* OBSERVER */
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            console.log('Elemento visible');
+            entry.target.classList.add('animacion');
+        } else {
+            console.log('Elemento no visible');
+            entry.target.classList.remove('animacion');
+        }
+    });
+});
+
+const elementos = document.querySelectorAll("img");
+elementos.forEach(elemento => {
+    observer.observe(elemento);
+});

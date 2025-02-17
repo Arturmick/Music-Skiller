@@ -1,5 +1,5 @@
 body {
-    background-image: url('../imagenes/fondoGrande5.jpg');
+    background-image: url('../imagenes/fondoGrande5.webp');
     background-size: cover; /* Ensure the background covers the entire screen */
     background-attachment: fixed; /* Keep the background fixed in place */
     background-position: center; /* Center the background image */
