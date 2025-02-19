@@ -499,3 +499,9 @@ justify-content: center;
 .opacidad {
     opacity: 0;
 }
+
+@media only screen and (max-width: 768px) {
+    .ocultar-en-movil {
+        display: none;
+    }
+}

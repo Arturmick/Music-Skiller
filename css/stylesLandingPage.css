@@ -91,7 +91,7 @@ body {
 }
 .bannerPrincipal {
     width: 100%;
-    height: 170px;
+    height: 100px;
     align-content: center;
     align-items: center;
     display: flex;
@@ -100,87 +100,125 @@ body {
 }
 .primeraParte {
     width: 100%;
-    height: 400px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center; 
-    margin-bottom: 100px;  
-}
-.primeraParte img {
-    margin-top: 20px;
-    height: 70%;
-    width: auto;
-    border-radius: 25px;
-    border: 2px solid silver;
-}
-.animacion {
-    animation: slideIn 1s forwards;
-}
-.animacionAlreves {
-    animation: slideInAlreves 1s forwards;
-}
-
-@keyframes slideIn {
-    
-    from {
-        transform: translateX(-20%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-@keyframes slideInAlreves {
-    
-    from {
-        transform: translateX(+20%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-.textoDecoracion {
-    border-radius: 25px;
-    padding: 50px;
-    color: white;
-    border: 2px solid silver;
-    background: linear-gradient(to right, #fab639cb, #ff893bcb);
-    width: 52%;
-    height: 82%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-left: 50px;
-    font-size: 21px;
-    line-height: 1.6;
+    margin-bottom: 20px;
 }
 .segundaParte {
     width: 100%;
-    height: 400px;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-items: center; 
-    margin-bottom:100px; 
+    margin-bottom: 20px;
 }
-.segundaParte img {
-    margin-top: 20px;
-    height: 70%;
-    width: auto;
+.terceraParte {
+    width: 40%;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-bottom: 20px;
+}
+.textoDecoracion {
     border-radius: 25px;
-    animation: slideIn 0.9s forwards;
-    margin-left: 50px;
+    color: white;
     border: 2px solid silver;
+    background: linear-gradient(to right, #fab639cb, #ff893bcb);
+    width: 55%;
+    height: 100%;
+    padding-left: 40px;
+    padding-right: 40px;    
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 50px;
+    font-size: 20px;
+    line-height: 1.6;
 }
+.textoDecoracion2 {
+    border-radius: 25px;
+    color: white;
+    border: 2px solid silver;
+    background: linear-gradient(to right, #fab639cb, #ff893bcb);
+    height: 550px;
+    padding-left: 40px;
+    padding-right: 40px;    
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+.textoDecoracion div {
+    width: 80%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;    
+    justify-content: center;
+    margin: auto;
+}
+
 .imagen {
     margin-top: 20px;
     height: 70%;
     width: auto;
     border-radius: 25px;
     border: 2px solid silver;
+}
+.registrate {
+    font-size: 20px;
+    margin-top: 20px;
+    width: 25%;
+    background-color:#ff6822 ;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid silver;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color:white;
+}
+.registrate:hover {
+    background-color: #ffa500;
+    color: white;
+    transition: 0.5s;
+}
+/*************************** carrusel **************************/
+
+.carousel {
+    width: 500px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    margin: 0 auto; /* Center the carousel horizontally */
+    border:  2px solid silver;
+    background: linear-gradient(to right, #fab639cb, #ff893bcb);
+    margin-bottom: 20px;
+}
+
+.carousel-container {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-container img {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
 }
   /*********************footer**************************/
 
@@ -195,21 +233,26 @@ body {
     padding-bottom: 16px;        
     width: 100%;
     height: 200px;
+    flex-direction: row; /* Ensure footerLogo and contacto are on the same line */
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    justify-content: space-between; /* Space out footerLogo and contacto */
+    align-items: center; /* Center align items vertically */
 }
-.footerMenu {
-    font-size: 20px;
+.footerLogo {
+    width: 20%; /* Adjust width as needed */
+    margin: 0; /* Remove auto margin */
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+}
+.footerLogo img {
     width: 100%;
-    height: 200px;
-    
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    color: inherit;
+    height: 170px;
+    object-fit: contain;
+    cursor: pointer;
 }
 .contacto {
     font-size: 20px;    
-    width: 90%;
+    width: 70%; /* Adjust width as needed */
     margin-top: 5px;
     height: 176px;
     display: flex;
@@ -230,15 +273,15 @@ body {
     color: #ffc400;
 }
 .derechos {
-    font-size: 20px;
-    
-    width: 100%;
+    font-size: 20px;    
+    width: 100%; /* Ensure it takes the full width */
     height: 40px;
-    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
     color: inherit;
+    text-align: center; /* Center align text */
+    margin-top: 10px; /* Add some space above */
 }
 @media (max-width: 1024px) {
     .cabecera {
@@ -263,25 +306,148 @@ body {
     }
     .bannerPrincipal {
         font-size: 20px;
-        height: auto;
+        height: 150px;
         
     }
-    .primeraParte, .segundaParte {
-        flex-direction: column;
+    .primeraParte {
+        width: 100%;
+        height: 500px;
+        margin: auto;
+    }
+    .segundaParte {
+        width: 100%;
+        height: 500px;
+        margin: auto;
+    }
+    .terceraParte {
+
+    }
+    .textoDecoracion {
+        width: 95%;
         height: auto;
+        padding-left: 40px;
+        padding-right: 40px;    
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 20px;
+        line-height: 1.6;
+        margin-left: 0px;
+    }
+    .textoDecoracion2 {
+        border-radius: 25px;
+        color: white;
+        border: 2px solid silver;
+        background: linear-gradient(to right, #fab639cb, #ff893bcb);
+        height: 550px;
+        padding-left: 40px;
+        padding-right: 40px;    
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 15px;
+        margin-right: 15px;
+        font-size: 19px;
+        line-height: 1.6;
+    }
+    
+    .textoDecoracion div {
+        width: 80%;
+        text-align: center;
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;    
+        justify-content: center;
+        margin: auto;
+    }
+    .carousel {
+
+        margin: 100px auto; /* Center the carousel horizontally */
+    }
+    .footer {
+        flex-direction: row;
+        height: auto;
+        display: flex;
+        width: 100%;
+    }
+    .footerLogo {
+        width: 30%;
+        margin: 10px 0;
+    }
+    .footerMenu {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+    .contacto {
+      
+        align-items: center;
+        text-align: center;
+    }
+    .derechos {
+      
+    }
+    .logoFooter {
+        width: 244px;
+        padding: 5px;
+        height: auto;
+        object-fit: contain;
+        cursor: pointer;
+    }
+}
+@media (max-width: 700px) {
+    .cabecera {
+        flex-direction: row;
+        height: auto;
+    }
+    #nombreCabecera {
+        font-size: 40px;
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+    .menu {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0;
+    }
+    .menu2 {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0;
+    }
+    .bannerPrincipal {
+        font-size: 20px;
+        height: 150px;
+        
+    }
+    .primeraParte {
+        flex-direction: column;
+        height: 350px;
+        margin-bottom: 50px;
+
+    } .segundaParte {
+        flex-direction: column;
+        height: 300px;
         margin-bottom: 50px;
     }
-    .primeraParte img, .segundaParte img {
-        width: 40%;
-        height: auto;
-        margin: 20px 0;
+    .terceraParte {
+        flex-direction: column;
+        height: 300px;
+        margin-bottom: 50px;
     }
     .textoDecoracion {
         width: 90%;
-        height: auto;
+        height: 200px;
         margin: 20px 0;
         font-size: 18px;
     }
+    
     .footer {
         flex-direction: row;
         height: auto;
@@ -312,3 +478,4 @@ body {
         cursor: pointer;
     }
 }
+

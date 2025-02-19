@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     submitLogin();
     //confirmLogin();
     checkLoginStatus();
+    initCarousel();
 });
 
 function submitSignIn() {
@@ -438,3 +439,20 @@ const elementos = document.querySelectorAll("img");
 elementos.forEach(elemento => {
     observer.observe(elemento);
 });
+
+function initCarousel() {
+    const carouselContainer = document.querySelector('.carousel-container');
+    const images = document.querySelectorAll('.carousel-container img');
+    let currentIndex = 0;
+
+    function showNextImage() {
+        currentIndex++;
+        if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+        const offset = -currentIndex * 500; // Adjust based on image width
+        carouselContainer.style.transform = `translateX(${offset}px)`;
+    }
+
+    setInterval(showNextImage, 3000); // Change image every 3 seconds
+}
